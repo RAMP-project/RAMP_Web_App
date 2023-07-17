@@ -6,7 +6,7 @@ The graphical user interface was developed by the
 
 The development process of the RAMP GUI is described in the following publication:
 
-Maria C.G. Hart, Sarah Eckhoff, Michael H. Breitner (2023): [Sustainable Energy System Planning in Developing Countries: Facilitating Load Profile Generation in Energy System Simulations]([https://hdl.handle.net/10125/102726]), 
+Maria C.G. Hart, Sarah Eckhoff, Michael H. Breitner (2023): [Sustainable Energy System Planning in Developing Countries: Facilitating Load Profile Generation in Energy System Simulations](https://hdl.handle.net/10125/102726), 
 Proceedings of the Hawaii International Conference on System Sciences (HICSS), Maui 2023
 
 The coding was done by Sarah Eckhoff.
