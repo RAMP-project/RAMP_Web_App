@@ -1,0 +1,30 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="mb-3 white-important">
+                {% translate "Neuen Account anlegen" %}
+            </legend>
+            {{ form | crispy }}
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-outline-primary" type="submit">{% translate "Anmelden"%}</button>
+        </div>
+    </form>
+    <div class="pt-3">
+        <small class="text-muted">
+            {% translate "Account bereits vorhanden?" %}
+            {% if request.GET.next %}
+            <a class="ml-2" href="{% url 'login' %}?next={{request.GET.next}}">{% translate "Einloggen"%}</a>
+            {%  else %}
+            <a class="ml-2" href="{% url 'login' %}">{% translate "Einloggen"%}</a>
+            {%  endif %}
+        </small>
+    </div>
+</div>
+{% endblock content %}

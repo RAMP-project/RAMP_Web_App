@@ -1,0 +1,896 @@
+{% extends 'main/base.html' %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block content_header %}
+    <div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+    <ul class="progressbar_ramp">
+            <a href="{% url 'ramp_start' %}"><li id="step1" class="active">{% translate "Vorlage"%}</li></a>
+            <a href="{% url 'ramp_input' %}"><li id="step2" class="active">{% translate "Eingaben"%}</li></a>
+            <li id="step3">{% translate "Ergebnisse"%}</li>
+          </ul>
+            <span class="sr-only">{% translate "2 von 3 Schritten" %}</span> <!-- text visible for screenreaders-only -->
+   </div>
+    </div>
+    <section class="content-header">
+        <h1>
+            {% translate "Haushalt definieren" %}
+        </h1>
+    </section>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div id="overlay">
+</div>
+<div id="spinner_building">
+    <div class="spinner-border text-light" role="status"></div>
+    <p class="text-light">
+        {% translate "Berechnung wird durchgeführt, bitte warten. Je nach Anzahl der Geräte kann dies bis zu einigen Minuten dauern. Bitte laden Sie die Seite nicht neu." %}
+    </p>
+</div>
+    <template id="id_appliance_formset_empty_form">
+    <div id="id_App_form-__number___wrapper">
+    <div >{{ app_form.non_field_errors }}</div>
+    <div class="card card-red" id="id_App_form-__number___Card">
+
+                        <div class="card-header" style="background: #bd2130">
+                        <div class="row" style="padding:0">
+                        <div class="col" style="padding:0px">
+                            <button class="btn" style="padding:0px" type="button" href="#" onclick="CopyAppForm(__number__)"> <i id="form-__number___copy_btn" style="color:white" class="far fa-copy"></i> </button>
+                        </div>
+                        <div class="col-sm-11 col-10">
+                            <div class="row">
+                            {{ appliance_formset.empty_form.number.errors }}
+                            {{ appliance_formset.empty_form.name.errors }}
+                            {{ appliance_formset.empty_form.p.errors }}
+                                {{ appliance_formset.empty_form.id }}
+                        </div>
+                        <div class="row">
+                    <div class="col-md-2 col-sm-3 col-6 order-sm-1 order-2">
+                                    <label for="{{ appliance_formset.empty_form.number.id_for_label }}">{{ appliance_formset.empty_form.number.label }} {%  if  appliance_formset.empty_form.number.help_text%}
+                                            <a class="fas fa-question-circle helptextpopover" style="color: #d7dcdf;" data-toggle="popover" data-content="{{ appliance_formset.empty_form.number.help_text }}"></a>
+                                    {%  endif %}</label>
+                                            {{ appliance_formset.empty_form.number }}
+                                        </div>
+                            <div class="col-md-7 col-sm-5 col-12 order-sm-2 order-1">
+                                    <label for="{{ appliance_formset.empty_form.name.id_for_label }}">{{ appliance_formset.empty_form.name.label }} {%  if  appliance_formset.empty_form.name.help_text%}
+                                            <a class="fas fa-question-circle helptextpopover" style="color: #d7dcdf;" data-toggle="popover" data-content="{{ appliance_formset.empty_form.name.help_text }}"></a>
+                                    {%  endif %}</label>
+                                            {{ appliance_formset.empty_form.name }}
+                                        </div>
+                            <div class="col-md-3 col-sm-4 col-6 order-sm-3 order-2">
+                                    <label for="{{ appliance_formset.empty_form.P.id_for_label }}">{{ appliance_formset.empty_form.P.label }} {%  if  appliance_formset.empty_form.P.help_text%}
+                                            <a class="fas fa-question-circle helptextpopover" style="color: #d7dcdf;" data-toggle="popover" data-content="{{ appliance_formset.empty_form.P.help_text }}"></a>
+                                    {%  endif %}</label>
+                                        <div class="input-group">
+                                            {{ appliance_formset.empty_form.P }}
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"> W </span>
+                                            </div>
+                                        </div>
+                                        </div>
+
+                                    </div>
+                        </div>
+                        <div class="col" style="padding:0px">
+                            <div class="row" style="padding: 0; height:75%">
+                                <div class="col-12">
+                                    <div style="display:none"> {{ appliance_formset.empty_form.deleted }}</div>
+                            <button id="id_App_form-__number___delete_button" type="button" style="padding:0px"
+                    onclick="AppFormDelete('__number__')" class="btn float-right"><i style="color:white" class="fa fa-times"></i>
+                        </button>
+                                </div></div><div class="row" style="padding: 0; height:25%"><div class="col-12">
+                            <button class="btn float-right" style="padding:0px" type="button" href="#" data-toggle="collapse" data-target="#id_App_form-__number___CardBody"> <i style="color:white" class="fas fa-chevron-down float-right"></i> </button>
+                        </div></div>
+                        </div>
+                        </div>
+
+                        </div>
+                        <div id="id_App_form-__number___CardBody" class="collapse" data-parent="#app_form_accordion">
+                        <div class="card-body" >
+                        <div class="row" style="margin-bottom: 7px">
+                        <div class="col-md-6">
+                            <label for="{{ appliance_formset.empty_form.func_time.id_for_label }}">{{ appliance_formset.empty_form.func_time.label }} {%  if  appliance_formset.empty_form.func_time.help_text%}
+                                    <a class="fas fa-question-circle helptextpopover" style="color: #d7dcdf;" data-toggle="popover" data-content="{{ appliance_formset.empty_form.func_time.help_text }}"></a>
+                            {%  endif %}</label>
+                        <div class="input-group">
+                                            {{ appliance_formset.empty_form.func_time }}
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"> {% translate "Minuten" %} </span>
+                                            </div>
+                                        </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <label for="{{ appliance_formset.empty_form.wd_we.id_for_label }}">{{ appliance_formset.empty_form.wd_we.label }} {%  if  appliance_formset.empty_form.wd_we.help_text%}
+                                    <a class="fas fa-question-circle helptextpopover" style="color: #d7dcdf;" data-toggle="popover" data-content="{{ appliance_formset.empty_form.wd_we.help_text }}"></a>
+                            {%  endif %}</label>
+                                    {{ appliance_formset.empty_form.wd_we }}
+                        </div>
+                        </div>
+                        <label for="id_windowselection_form-__number__"> {%  translate "Nutzungszeitfenster" %} </label>
+                        <div id="id_windowselection_form-__number__">
+                        <div style="display: none"> {{ appliance_formset.empty_form.num_windows }}</div>
+                        <div class = "row" >
+                        <div class="col-6">
+                            <div class="form-group row" style="margin-bottom: 3px">
+                                <label for="{{ appliance_formset.empty_form.window_1_start.id_for_label }}" class="col-sm-2 col-form-label ">{{ appliance_formset.empty_form.window_1_start.label }} {%  if  appliance_formset.empty_form.window_1_start.help_text%}
+                                        <a class="fas fa-question-circle helptextpopover" style="color: #d7dcdf;" data-toggle="popover" data-content="{{ appliance_formset.empty_form.window_1_start.help_text }}"></a>
+                                {%  endif %}</label>
+                            <div class="col-sm-10">
+                                        {{ appliance_formset.empty_form.window_1_start }}
+                             </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group row" style="margin-bottom: 3px">
+                                <label for="{{ appliance_formset.empty_form.window_1_end.id_for_label }}" class="col-sm-2 col-form-label ">{{ appliance_formset.empty_form.window_1_end.label }} {%  if  appliance_formset.empty_form.window_1_end.help_text%}
+                                        <a class="fas fa-question-circle helptextpopover" style="color: #d7dcdf;" data-toggle="popover" data-content="{{ appliance_formset.empty_form.window_1_end.help_text }}"></a>
+                                {%  endif %}</label>
+                            <div class="col-sm-10">
+                                        <div class="row">
+                                <div class="col">
+                                        {{ appliance_formset.empty_form.window_1_end }}
+                                </div>
+                                    <div class="col-1">
+                                    </div>
+                                </div>
+                             </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div id="id_window_2_form-__number__" style="display: none">
+                        <div class = "row" >
+                        <div class="col-6">
+                            <div class="form-group row" style="margin-bottom: 3px">
+                                <label for="{{ appliance_formset.empty_form.window_2_start.id_for_label }}" class="col-sm-2 col-form-label ">{{ appliance_formset.empty_form.window_2_start.label }} {%  if  appliance_formset.empty_form.window_2_start.help_text%}
+                                        <a class="fas fa-question-circle helptextpopover" style="color: #d7dcdf;" data-toggle="popover" data-content="{{ appliance_formset.empty_form.window_2_start.help_text }}"></a>
+                                {%  endif %}</label>
+                            <div class="col-sm-10">
+                                        {{ appliance_formset.empty_form.window_2_start }}
+                             </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group row" style="margin-bottom: 3px">
+                                <label for="{{ appliance_formset.empty_form.window_2_end.id_for_label }}" class="col-sm-2 col-form-label ">{{ appliance_formset.empty_form.window_2_end.label }} {%  if  appliance_formset.empty_form.window_2_end.help_text%}
+                                        <a class="fas fa-question-circle helptextpopover" style="color: #d7dcdf;" data-toggle="popover" data-content="{{ appliance_formset.empty_form.window_2_end.help_text }}"></a>
+                                {%  endif %}</label>
+                            <div class="col-sm-10">
+                                <div class="row">
+                                <div class="col">
+                                        {{ appliance_formset.empty_form.window_2_end }}
+                                </div>
+                                    <div class="col-1">
+                                        <div style="margin-top:50%;margin-bottom: 50%">
+                                <button id="window_2_form-__number___delete_button" type="button" style="display:none;padding:0px;" onclick="Window_form__number___Delete()" class="btn float-center"><i class="fa fa-times"></i>
+                                                    </button>
+                            </div>
+                                    </div>
+                                </div>
+                             </div>
+                            </div>
+
+                            </div>
+                        </div>
+                        </div>
+                        <div id="id_window_3_form-__number__" style="display: none">
+                        <div class = "row" >
+                        <div class="col-6">
+                            <div class="form-group row" style="margin-bottom: 3px">
+                                <label for="{{ appliance_formset.empty_form.window_3_start.id_for_label }}" class="col-sm-2 col-form-label ">{{ appliance_formset.empty_form.window_3_start.label }} {%  if  appliance_formset.empty_form.window_3_start.help_text%}
+                                        <a class="fas fa-question-circle helptextpopover" style="color: #d7dcdf;" data-toggle="popover" data-content="{{ appliance_formset.empty_form.window_3_start.help_text }}"></a>
+                                {%  endif %}</label>
+                            <div class="col-sm-10">
+                                        {{ appliance_formset.empty_form.window_3_start }}
+                             </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group row" style="margin-bottom: 3px">
+                                <label for="{{ appliance_formset.empty_form.window_3_end.id_for_label }}" class="col-sm-2 col-form-label ">{{ appliance_formset.empty_form.window_3_end.label }} {%  if  appliance_formset.empty_form.window_3_end.help_text%}
+                                        <a class="fas fa-question-circle helptextpopover" style="color: #d7dcdf;" data-toggle="popover" data-content="{{ appliance_formset.empty_form.window_3_end.help_text }}"></a>
+                                {%  endif %}</label>
+                            <div class="col-sm-10">
+                                        <div class="row">
+                                <div class="col">
+                                        {{ appliance_formset.empty_form.window_3_end }}
+                                </div>
+                                    <div class="col-1">
+                                        <div style="margin-top:50%;margin-bottom: 50%">
+                                <button id="window_3_form-__number___delete_button" type="button" style="display:none;padding:0px;" onclick="Window_form__number___Delete()" class="btn float-center"><i class="fa fa-times"></i>
+                                                    </button>
+                            </div>
+                                    </div>
+                                </div>
+                             </div>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="row" style="margin-bottom: 20px;">
+                            <div class="col-12">
+                                <button id="form-__number___add_button" type="button" onclick="Window_form__number___Add()" style="padding:0" class="btn float-right">
+                                    <small>
+                            {%  translate "Zeitfenster hinzufügen" %}
+                                                    </small></button>
+                            </div>
+                        </div>
+                        </div>
+
+                        <div class="card card-red card-outline">
+                        <a class="link-black" data-toggle="collapse" href="#" data-target="#CardExpert_form-__number__">
+                            <div class="card-header" style="padding-top:7px; padding-bottom: 7px">
+                                <div class="m-0">
+                                    <i class="fas fa-chevron-down float-right"></i>
+                                    {% translate "Weitere Einstellungen" %}
+                                </div>
+                            </div>
+                        </a>
+                        <div id="CardExpert_form-__number__" class="collapse">
+                            <div class="card-body">
+                            <div class="row">
+                        <div class="col-md-6">
+                            <label for="{{ appliance_formset.empty_form.r_w.id_for_label }}">{{ appliance_formset.empty_form.r_w.label }} {%  if  appliance_formset.empty_form.r_w.help_text%}
+                                    <a class="fas fa-question-circle helptextpopover" style="color: #d7dcdf;" data-toggle="popover" data-content="{{ appliance_formset.empty_form.r_w.help_text }}"></a>
+                            {%  endif %}</label>
+                                    <div class="input-group">
+                                            {{ appliance_formset.empty_form.r_w }}
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"> % </span>
+                                            </div>
+                                        </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="{{ appliance_formset.empty_form.occasional_use.id_for_label }}">{{ appliance_formset.empty_form.occasional_use.label }} {%  if  appliance_formset.empty_form.occasional_use.help_text%}
+                                    <a class="fas fa-question-circle helptextpopover" style="color: #d7dcdf;" data-toggle="popover" data-content="{{ appliance_formset.empty_form.occasional_use.help_text }}"></a>
+                            {%  endif %}</label>
+                                    <div class="input-group">
+                                            {{ appliance_formset.empty_form.occasional_use }}
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"> % </span>
+                                            </div>
+                                        </div>
+                        </div>
+                        </div>
+                                <div class="row">
+                        <div class="col-md-6">
+                            <label for="{{ appliance_formset.empty_form.r_t.id_for_label }}">{{ appliance_formset.empty_form.r_t.label }} {%  if  appliance_formset.empty_form.r_t.help_text%}
+                                    <a class="fas fa-question-circle helptextpopover" style="color: #d7dcdf;" data-toggle="popover" data-content="{{ appliance_formset.empty_form.r_t.help_text }}"></a>
+                            {%  endif %}</label>
+                                    <div class="input-group">
+                                            {{ appliance_formset.empty_form.r_t }}
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"> % </span>
+                                            </div>
+                                        </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="{{ appliance_formset.empty_form.func_cycle.id_for_label }}">{{ appliance_formset.empty_form.func_cycle.label }} {%  if  appliance_formset.empty_form.func_cycle.help_text%}
+                                    <a class="fas fa-question-circle helptextpopover" style="color: #d7dcdf;" data-toggle="popover" data-content="{{ appliance_formset.empty_form.func_cycle.help_text }}"></a>
+                            {%  endif %}</label>
+                                    <div class="input-group">
+                                            {{ appliance_formset.empty_form.func_cycle }}
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"> {%  translate "Minuten" %} </span>
+                                            </div>
+                                        </div>
+                        </div>
+                        </div>
+                            </div>
+                        </div>
+                        </div>
+            </div>
+            </div>
+</div>
+    </div>
+            <script> function form__number__main() {
+                // formsets are normally not required
+                $("#id_Appform__number__Card").find("input").attr("required", true);
+                // show the right amount of usage windows
+                var num_windows = document.getElementById("id_form-__number__-num_windows")
+                var window_2 = document.getElementById("id_window_2___number__")
+                var window_3 = document.getElementById("id_window_3___number__")
+                var window_2_delete_button = document.getElementById(("window_2-__number__delete_button"))
+                var window_3_delete_button = document.getElementById(("window_3-__number__delete_button"))
+                var add_button = document.getElementById("__number__add_button")
+                if (num_windows.value == 1) {
+                    window_2.style.display = "none"
+                    window_3.style.display = "none"
+                } else if (num_windows.value == 2) {
+                    window_3.style.display = "none"
+                    window_2_delete_button.style.display = "block"
+                } else if (num_windows.value ==3) {
+                    add_button.style.display = "none"
+                    window_2_delete_button.style.display = "none"
+                    window_3_delete_button.style.display = "block"
+                }
+            }
+
+             window.addEventListener("load", form__number__main, true);
+
+             function Window_form__number___Add() {
+                 var num_windows = document.getElementById("id_form-__number__-num_windows")
+                 var window_2 = document.getElementById("id_window_2_form-__number__")
+                 var window_3 = document.getElementById("id_window_3_form-__number__")
+                 var add_button = document.getElementById("form-__number___add_button")
+                 var window_2_delete_button = document.getElementById(("window_2_form-__number___delete_button"))
+                 var window_3_delete_button = document.getElementById(("window_3_form-__number___delete_button"))
+                 console.log(num_windows.value)
+                 if (num_windows.value == 1) {
+                     num_windows.value = "2"
+                     window_2.style.display = "block"
+                     window_2_delete_button.style.display = "block"
+                 } else if (num_windows.value == 2) {
+                     num_windows.value = "3"
+                     window_3.style.display = "block"
+                     add_button.style.display = "none"
+                     window_2_delete_button.style.display = "none"
+                     window_3_delete_button.style.display = "block"
+                 }
+             }
+             function Window_form__number___Delete() {
+                 var num_windows = document.getElementById("id_form-__number__-num_windows")
+                 var window_2 = document.getElementById("id_window_2_form-__number__")
+                 var window_3 = document.getElementById("id_window_3_form-__number__")
+                 var add_button = document.getElementById("form-__number___add_button")
+                 var window_2_delete_button = document.getElementById("window_2_form-__number___delete_button")
+
+                 add_button.style.display = ""
+                 if (num_windows.value==3) {
+                     window_3.style.display = "none"
+                     window_2_delete_button.style.display = "block"
+                     num_windows.value = 2
+                 } else if (num_windows.value==2) {
+                     window_2.style.display = "none"
+                     num_windows.value = 1
+                 }
+             }
+            </script>
+    </template>
+    <div class="container">
+    <div class="row">
+    <div class="col-12" style="margin-bottom:15px;">
+    <form method="POST" onsubmit="loadingPage()">
+        {% csrf_token %}
+        <div class="form-group">
+        <div>
+            <label for="{{ lp_form.name.id_for_label }}">{{ lp_form.name.label }} {%  if  lp_form.name.help_text%}
+                                            <a class="fas fa-question-circle helptextpopover" style="color: #d7dcdf;" data-toggle="popover" data-content="{{ lp_form.name.help_text }}"></a>
+                                    {%  endif %}</label>
+                                            {{ lp_form.name }}
+                                        </div>
+        </div>
+
+        <div class="row">
+        <div class="col-lg-12">
+        {{ appliance_formset.management_form}}
+        <label for="app_form_accordion"> {%  translate "Geräte im Haushalt" %} </label>
+        <div id="empty_card" class="card">
+            <div class="car-body" style="background: darkgray">
+                <div style="margin: 15px">
+                {% translate "Noch kein Gerät vorhanden" %}
+            </div></div>
+        </div>
+        <div class="accordion" id="app_form_accordion">
+        {% for app_form in appliance_formset %}
+            <div id="id_App_form-{{ forloop.counter0 }}_wrapper"
+            {% if app_form.deleted.value == 'true' %}style="display:none" {% endif %}>
+            <div >{{ app_form.non_field_errors }}</div>
+            <div class="card card-red" id="id_App_form-{{ forloop.counter0 }}_Card">
+
+                        <div class="card-header" style="background: #bd2130">
+                        <div class="row" style="padding:0">
+                        <div class="col" style="padding:0px">
+                            <button class="btn" style="padding:0px" type="button" href="#" onclick="CopyAppForm({{ forloop.counter0 }})"> <i id="form-{{ forloop.counter0 }}_copy_btn" style="color:white" class="far fa-copy"></i> </button>
+                        </div>
+                        <div class="col-sm-11 col-10">
+                            <div class="row">
+                            {{ app_form.number.errors }}
+                            {{ app_form.name.errors }}
+                            {{ app_form.p.errors }}
+                        </div>
+                        <div class="row"> <!-- über offset nachdenken für löschen button -->
+                    <div class="col-md-2 col-sm-3 col-6 order-sm-1 order-2">
+                                    <label for="{{ app_form.number.id_for_label }}">{{ app_form.number.label }} {%  if  app_form.number.help_text%}
+                                            <a class="fas fa-question-circle helptextpopover" style="color: #d7dcdf;" data-toggle="popover" data-content="{{ app_form.number.help_text }}"></a>
+                                    {%  endif %}</label>
+                                            {{ app_form.number }}
+                                        </div>
+                            <div class="col-md-7 col-sm-5 col-12 order-sm-2 order-1">
+                                    <label for="{{ app_form.name.id_for_label }}">{{ app_form.name.label }} {%  if  app_form.name.help_text%}
+                                            <a class="fas fa-question-circle helptextpopover" style="color: #d7dcdf;" data-toggle="popover" data-content="{{ app_form.name.help_text }}"></a>
+                                    {%  endif %}</label>
+                                            {{ app_form.name }}
+                                        </div>
+                            <div class="col-md-3 col-sm-4 col-6 order-sm-3 order-2">
+                                    <label for="{{ app_form.P.id_for_label }}">{{ app_form.P.label }} {%  if  app_form.P.help_text%}
+                                            <a class="fas fa-question-circle helptextpopover" style="color: #d7dcdf;" data-toggle="popover" data-content="{{ app_form.P.help_text }}"></a>
+                                    {%  endif %}</label>
+                                        <div class="input-group">
+                                            {{ app_form.P }}
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"> W </span>
+                                            </div>
+                                        </div>
+                                        </div>
+
+                                    </div>
+                        </div>
+                        <div class="col" style="padding:0px">
+                            <div class="row" style="padding: 0; height:75%">
+                                <div class="col-12">
+                                    <div style="display:none">{{ app_form.deleted }}</div>
+                            <button id="id_App_form-{{ forloop.counter0 }}_delete_button" type="button" style="padding:0px"
+                    onclick="AppFormDelete('{{ forloop.counter0 }}')" class="btn float-right"><i style="color:white" class="fa fa-times"></i>
+                        </button>
+                                </div></div><div class="row" style="padding: 0; height:25%"><div class="col-12">
+                            <button class="btn float-right" style="padding:0px" type="button" href="#" data-toggle="collapse" data-target="#id_App_form-{{ forloop.counter0 }}_CardBody"> <i style="color:white" class="fas fa-chevron-down float-right"></i> </button>
+                        </div></div>
+                        </div>
+                        </div>
+
+                        </div>
+                        <div id="id_App_form-{{ forloop.counter0 }}_CardBody" class="collapse {% if forloop.first %}show {% endif %}" data-parent="#app_form_accordion">
+                        <div class="card-body" >
+                        <div class="row" style="margin-bottom: 7px">
+                        <div class="col-md-6">
+                            <label for="{{ app_form.func_time.id_for_label }}">{{ app_form.func_time.label }} {%  if  app_form.func_time.help_text%}
+                                    <a class="fas fa-question-circle helptextpopover" style="color: #d7dcdf;" data-toggle="popover" data-content="{{ app_form.func_time.help_text }}"></a>
+                            {%  endif %}</label>
+                        <div class="input-group">
+                                            {{ app_form.func_time }}
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"> {% translate "Minuten" %} </span>
+                                            </div>
+                                        </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <label for="{{ app_form.wd_we.id_for_label }}">{{ app_form.wd_we.label }} {%  if  app_form.wd_we.help_text%}
+                                    <a class="fas fa-question-circle helptextpopover" style="color: #d7dcdf;" data-toggle="popover" data-content="{{ app_form.wd_we.help_text }}"></a>
+                            {%  endif %}</label>
+                                    {{ app_form.wd_we }}
+                        </div>
+                        </div>
+                        <label for="id_windowselection_form-{{ forloop.counter }}"> {%  translate "Nutzungszeitfenster" %} </label>
+                        <div id="id_windowselection_form-{{ forloop.counter }}">
+                        <div style="display: none"> {{ app_form.num_windows }}</div>
+                        <div class = "row" >
+                        <div class="col-6">
+                            <div class="form-group row" style="margin-bottom: 3px">
+                                <label for="{{ app_form.window_1_start.id_for_label }}" class="col-sm-2 col-form-label ">{{ app_form.window_1_start.label }} {%  if  app_form.window_1_start.help_text%}
+                                        <a class="fas fa-question-circle helptextpopover" style="color: #d7dcdf;" data-toggle="popover" data-content="{{ app_form.window_1_start.help_text }}"></a>
+                                {%  endif %}</label>
+                            <div class="col-sm-10">
+                                        {{ app_form.window_1_start }}
+                             </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group row" style="margin-bottom: 3px">
+                                <label for="{{ app_form.window_1_end.id_for_label }}" class="col-sm-2 col-form-label ">{{ app_form.window_1_end.label }} {%  if  app_form.window_1_end.help_text%}
+                                        <a class="fas fa-question-circle helptextpopover" style="color: #d7dcdf;" data-toggle="popover" data-content="{{ app_form.window_1_end.help_text }}"></a>
+                                {%  endif %}</label>
+                            <div class="col-sm-10">
+                                        <div class="row">
+                                <div class="col">
+                                        {{ app_form.window_1_end }}
+                                </div>
+                                    <div class="col-1">
+                                    </div>
+                                </div>
+                             </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div id="id_window_2_form-{{ forloop.counter0 }}">
+                        <div class = "row" >
+                        <div class="col-6">
+                            <div class="form-group row" style="margin-bottom: 3px">
+                                <label for="{{ app_form.window_2_start.id_for_label }}" class="col-sm-2 col-form-label ">{{ app_form.window_2_start.label }} {%  if  app_form.window_2_start.help_text%}
+                                        <a class="fas fa-question-circle helptextpopover" style="color: #d7dcdf;" data-toggle="popover" data-content="{{ app_form.window_2_start.help_text }}"></a>
+                                {%  endif %}</label>
+                            <div class="col-sm-10">
+                                        {{ app_form.window_2_start }}
+                             </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group row" style="margin-bottom: 3px">
+                                <label for="{{ app_form.window_2_end.id_for_label }}" class="col-sm-2 col-form-label ">{{ app_form.window_2_end.label }} {%  if  app_form.window_2_end.help_text%}
+                                        <a class="fas fa-question-circle helptextpopover" style="color: #d7dcdf;" data-toggle="popover" data-content="{{ app_form.window_2_end.help_text }}"></a>
+                                {%  endif %}</label>
+                            <div class="col-sm-10">
+                                <div class="row">
+                                <div class="col">
+                                        {{ app_form.window_2_end }}
+                                </div>
+                                    <div class="col-1">
+                                        <div style="margin-top:50%;margin-bottom: 50%">
+                                <button id="window_2_form-{{ forloop.counter0 }}_delete_button" type="button" style="display:none;padding:0px;" onclick="Window_form{{ forloop.counter0 }}_Delete()" class="btn float-center"><i class="fa fa-times"></i>
+                                                    </button>
+                            </div>
+                                    </div>
+                                </div>
+                             </div>
+                            </div>
+
+                            </div>
+                        </div>
+                        </div>
+                        <div id="id_window_3_form-{{ forloop.counter0 }}">
+                        <div class = "row" >
+                        <div class="col-6">
+                            <div class="form-group row" style="margin-bottom: 3px">
+                                <label for="{{ app_form.window_3_start.id_for_label }}" class="col-sm-2 col-form-label ">{{ app_form.window_3_start.label }} {%  if  app_form.window_3_start.help_text%}
+                                        <a class="fas fa-question-circle helptextpopover" style="color: #d7dcdf;" data-toggle="popover" data-content="{{ app_form.window_3_start.help_text }}"></a>
+                                {%  endif %}</label>
+                            <div class="col-sm-10">
+                                        {{ app_form.window_3_start }}
+                             </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group row" style="margin-bottom: 3px">
+                                <label for="{{ app_form.window_3_end.id_for_label }}" class="col-sm-2 col-form-label ">{{ app_form.window_3_end.label }} {%  if  app_form.window_3_end.help_text%}
+                                        <a class="fas fa-question-circle helptextpopover" style="color: #d7dcdf;" data-toggle="popover" data-content="{{ app_form.window_3_end.help_text }}"></a>
+                                {%  endif %}</label>
+                            <div class="col-sm-10">
+                                        <div class="row">
+                                <div class="col">
+                                        {{ app_form.window_3_end }}
+                                </div>
+                                    <div class="col-1">
+                                        <div style="margin-top:50%;margin-bottom: 50%">
+                                <button id="window_3_form-{{ forloop.counter0 }}_delete_button" type="button" style="display:none;padding:0px;" onclick="Window_form{{ forloop.counter0 }}_Delete()" class="btn float-center"><i class="fa fa-times"></i>
+                                                    </button>
+                            </div>
+                                    </div>
+                                </div>
+                             </div>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="row" style="margin-bottom: 20px;">
+                            <div class="col-12">
+                                <button id="form-{{ forloop.counter0 }}_add_button" type="button" onclick="Window_form{{ forloop.counter0 }}_Add()" style="padding:0" class="btn float-right">
+                                    <small>
+                            {%  translate "Zeitfenster hinzufügen" %}
+                                                    </small></button>
+                            </div>
+                        </div>
+                        </div>
+
+                        <div class="card card-red card-outline">
+                        <a class="link-black" data-toggle="collapse" href="#" data-target="#CardExpert_form-{{ forloop.counter0 }}">
+                            <div class="card-header" style="padding-top:7px; padding-bottom: 7px">
+                                <div class="m-0">
+                                    <i class="fas fa-chevron-down float-right"></i>
+                                    {% translate "Weitere Einstellungen" %}
+                                </div>
+                            </div>
+                        </a>
+                        <div id="CardExpert_form-{{ forloop.counter0 }}" class="collapse">
+                            <div class="card-body">
+                            <div class="row">
+                        <div class="col-md-6">
+                            <label for="{{ app_form.r_w.id_for_label }}">{{ app_form.r_w.label }} {%  if  app_form.r_w.help_text%}
+                                    <a class="fas fa-question-circle helptextpopover" style="color: #d7dcdf;" data-toggle="popover" data-content="{{ app_form.r_w.help_text }}"></a>
+                            {%  endif %}</label>
+                                    <div class="input-group">
+                                            {{ app_form.r_w }}
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"> % </span>
+                                            </div>
+                                        </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="{{ app_form.occasional_use.id_for_label }}">{{ app_form.occasional_use.label }} {%  if  app_form.occasional_use.help_text%}
+                                    <a class="fas fa-question-circle helptextpopover" style="color: #d7dcdf;" data-toggle="popover" data-content="{{ app_form.occasional_use.help_text }}"></a>
+                            {%  endif %}</label>
+                                    <div class="input-group">
+                                            {{ app_form.occasional_use }}
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"> % </span>
+                                            </div>
+                                        </div>
+                        </div>
+                        </div>
+                                <div class="row">
+                        <div class="col-md-6">
+                            <label for="{{ app_form.r_t.id_for_label }}">{{ app_form.r_t.label }} {%  if  app_form.r_t.help_text%}
+                                    <a class="fas fa-question-circle helptextpopover" style="color: #d7dcdf;" data-toggle="popover" data-content="{{ app_form.r_t.help_text }}"></a>
+                            {%  endif %}</label>
+                                    <div class="input-group">
+                                            {{ app_form.r_t }}
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"> % </span>
+                                            </div>
+                                        </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="{{ app_form.func_cycle.id_for_label }}">{{ app_form.func_cycle.label }} {%  if  app_form.func_cycle.help_text%}
+                                    <a class="fas fa-question-circle helptextpopover" style="color: #d7dcdf;" data-toggle="popover" data-content="{{ app_form.func_cycle.help_text }}"></a>
+                            {%  endif %}</label>
+                        <div class="input-group">
+                                            {{ app_form.func_cycle }}
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"> {%  translate "Minuten" %} </span>
+                                            </div>
+                                        </div>
+
+                        </div>
+                        </div>
+                            </div>
+                        </div>
+                        </div>
+            </div>
+            </div>
+            </div>
+</div>
+            <script> function form{{ forloop.counter0 }}_main() {
+                // formsets are normally not required
+                $("#id_App_form-{{ forloop.counter0 }}_Card").find("input").attr("required", true);
+                $('#id_form-{{ forloop.counter0 }}-deleted').val("false")
+                // show the right amount of usage windows
+                var num_windows = document.getElementById("id_form-{{ forloop.counter0 }}-num_windows")
+                var window_2 = document.getElementById("id_window_2_form-{{ forloop.counter0 }}")
+                var window_3 = document.getElementById("id_window_3_form-{{ forloop.counter0 }}")
+                var window_2_delete_button = document.getElementById(("window_2_form-{{ forloop.counter0 }}_delete_button"))
+                var window_3_delete_button = document.getElementById(("window_3_form-{{ forloop.counter0 }}_delete_button"))
+                var add_button = document.getElementById("form-{{ forloop.counter0 }}_add_button")
+                if (num_windows.value == "1") {
+                    window_2.style.display = "none"
+                    window_3.style.display = "none"
+                } else if (num_windows.value == "2") {
+                    window_3.style.display = "none"
+                    window_2_delete_button.style.display = "block"
+                } else if (num_windows.value == "3") {
+                    add_button.style.display = "none"
+                    window_2_delete_button.style.display = "none"
+                    window_3_delete_button.style.display = "block"
+                }
+            }
+
+             window.addEventListener("load", form{{ forloop.counter0 }}_main, true);
+
+             function Window_form{{ forloop.counter0 }}_Add() {
+                 var num_windows = document.getElementById("id_form-{{ forloop.counter0 }}-num_windows")
+                 var window_2 = document.getElementById("id_window_2_{{ forloop.counter0 }}")
+                 var window_3 = document.getElementById("id_window_3_{{ forloop.counter0 }}")
+                 var add_button = document.getElementById("{{ forloop.counter0 }}add_button")
+                 var window_2_delete_button = document.getElementById(("window_2-{{ forloop.counter0 }}delete_button"))
+                 var window_3_delete_button = document.getElementById(("window_3-{{ forloop.counter0 }}delete_button"))
+                 if (num_windows.value == 1) {
+                     num_windows.value = 2
+                     window_2.style.display = "block"
+                     window_2_delete_button.style.display = "block"
+                 } else if (num_windows.value == 2) {
+                     num_windows.value = 3
+                     window_3.style.display = "block"
+                     add_button.style.display = "none"
+                     window_2_delete_button.style.display = "none"
+                     window_3_delete_button.style.display = "block"
+                 }
+             }
+             function Window_form{{ forloop.counter0 }}_Delete() {
+                 var num_windows = document.getElementById("id_form-{{ forloop.counter0 }}-num_windows")
+                 var window_2 = document.getElementById("id_window_2_form-{{ forloop.counter0 }}")
+                 var window_3 = document.getElementById("id_window_3_form-{{ forloop.counter0 }}")
+                 var add_button = document.getElementById("form-{{ forloop.counter0 }}_add_button")
+                 var window_2_delete_button = document.getElementById(("window_2_form-{{ forloop.counter0 }}_delete_button"))
+                 var window_3_delete_button = document.getElementById(("window_3_form-{{ forloop.counter0 }}_delete_button"))
+
+                 add_button.style.display = ""
+                 if (num_windows.value==3) {
+                     window_3.style.display = "none"
+                     window_2_delete_button.style.display = "block"
+                     num_windows.value = 2
+                 } else if (num_windows.value==2) {
+                     window_2.style.display = "none"
+                     num_windows.value = 1
+                 }
+             }
+            </script>
+        {% endfor %}
+        </div>
+        </div>
+        </div>
+    <label for="id_add-app-form"> {%  translate "Gerät hinzufügen" %} </label>
+    <div class="row" id="id_add-app-form" style="margin-bottom: 10px">
+        <div class="col">
+        <button class="btn btn-outline-red" style="width:100%; margin-bottom:5px; min-width: 144px" onclick="AddAppForm('{% translate "Fernseher"%}')" type="button"><i class="fas fa-tv"></i>{% translate " Fernseher"%}</button>
+        </div>
+            <div class="col">
+    <button class="btn btn-outline-red" style="width:100%; margin-bottom:5px; min-width: 144px" onclick="AddAppForm('{% translate "Kühlschrank"%}')" type="button"><i class="fas fa-snowflake"></i>{% translate " Kühlschrank"%}</button>
+                </div>
+            <div class="col">
+    <button class="btn btn-outline-red" style="width:100%; margin-bottom:5px; min-width: 144px" onclick="AddAppForm('{% translate "Lampe"%}')" type="button"><i class="fas fa-lightbulb"></i>{% translate " Lampe"%}</button>
+                </div>
+            <div class="col">
+    <button class="btn btn-outline-red" style="width:100%; margin-bottom:5px; min-width: 144px" onclick="AddAppForm('{% translate "Handy"%}')" type="button"><i class="fas fa-mobile-alt"></i>{% translate " Handy"%}</button>
+                </div>
+            <div class="col">
+    <button class="btn btn-outline-red" style="width:100%; margin-bottom:5px; min-width: 144px" onclick="AddAppForm('')" type="button">{% translate "Sonstiges"%}</button>
+    </div></div>
+
+        <div class="row">
+            <div class="col-lg-12">
+            <button class="btn btn-red float-right" onclick="showAllCards()" type="submit">{% translate "Berechnung starten"%}</button>
+            </div></div>
+    </form>
+    </div>
+    </div>
+</div>
+    <script>
+    let visible_forms = 0
+     function onLoad() {
+         let totForms_field = document.querySelector("#id_form-TOTAL_FORMS")
+         visible_forms = parseInt(totForms_field.value)
+         if (totForms_field.value == 0) {
+             $('#empty_card').removeAttr("style")
+         } else {
+             $('#empty_card').hide()
+         }
+     }
+     window.addEventListener("load", onLoad, true);
+
+
+    function AppFormDelete(formnumber) {
+        number = formnumber
+            //let totForms_field = document.querySelector("#id_form-TOTAL_FORMS")
+            //totForms_field.value = totForms_field.value - 1
+            visible_forms = parseInt(visible_forms) - 1
+            console.log(visible_forms)
+            let wrapper = document.getElementById('id_App_form-' + number + '_wrapper')
+            wrapper.style.display = "none"
+
+            //$('#id_App_form-' + number + '_wrapper').style.display = "none";
+            $('#id_form-' + number + '-deleted').val("true")
+            $('#id_form-' + number + '-name').val("deleted")
+            $('#id_form-' + number + '-P').val("0")
+            $('#id_form-' + number + '-num_windows').val("1")
+            $('#id_form-' + number + '-window_1_start').val("00:00")
+            $('#id_form-' + number + '-window_1_end').val("00:00")
+            $('#id_form-' + number + '-func_time').val("0")
+
+
+            $("#id_add-app-form").removeAttr("style");
+
+            if (visible_forms == 0) {
+                // show empty card
+                $('#empty_card').removeAttr("style")
+            }
+    }
+
+    function AddAppForm(name) {
+        // hide empty card
+        $('#empty_card').hide()
+        let nextFormNum = document.querySelector("#id_form-TOTAL_FORMS").value
+
+        var tmplMarkup = $('#id_appliance_formset_empty_form').html();
+        var semicompiledTmp = tmplMarkup.replace(/__prefix__/g, nextFormNum);
+        var compiledTmpl = semicompiledTmp.replace(/__number__/g, (parseInt(nextFormNum)));
+        $('#app_form_accordion').append(compiledTmpl);
+        $('[data-toggle="popover"]').popover({
+              trigger: 'focus hover'
+            })
+
+        document.querySelector("#id_form-TOTAL_FORMS").value = parseInt(nextFormNum) + 1
+        visible_forms = parseInt(visible_forms) + 1
+        // set to required
+        $("#id_App_form-" + nextFormNum + "_Card").find("input").attr("required", true);
+        $('#id_form-' + nextFormNum + '-deleted').val("false")
+        $("#id_App_form-" + nextFormNum + "_CardBody").collapse('show')
+        // collapse all other forms
+        for (let i = 0; i < (nextFormNum - 1); i++) {
+            $("#id_App_form-" + i + "_CardBody").collapse('hide')
+        }
+
+        // hide add form button if necessary
+        let maxFormNum = document.querySelector("#id_form-MAX_NUM_FORMS").value
+        if (nextFormNum == maxFormNum - 1) {
+            let addButton = document.getElementById("id_add-app-form")
+            addButton.style.display = "none"
+        }
+        // add name to name field
+        name_field = document.getElementById("id_form-" + nextFormNum + "-name")
+        name_field.value = name
+    }
+
+    function CopyAppForm(formnum) {
+        AddAppForm("copied")
+        // fill new form with values from original form
+        let name = document.getElementById("id_form-" + formnum + "-name")
+        let number = document.getElementById("id_form-" + formnum + "-number")
+        let P = document.getElementById("id_form-" + formnum + "-P")
+        let func_cycle = document.getElementById("id_form-" + formnum + "-func_cycle")
+        let wd_we = document.getElementById("id_form-" + formnum + "-wd_we")
+        let num_windows = document.getElementById("id_form-" + formnum + "-num_windows")
+        let window_1_start = document.getElementById("id_form-" + formnum + "-window_1_start")
+        let window_1_end = document.getElementById("id_form-" + formnum + "-window_1_end")
+        let window_2_start = document.getElementById("id_form-" + formnum + "-window_2_start")
+        let window_2_end = document.getElementById("id_form-" + formnum + "-window_2_end")
+        let window_3_start = document.getElementById("id_form-" + formnum + "-window_3_start")
+        let window_3_end = document.getElementById("id_form-" + formnum + "-window_3_end")
+        let r_w = document.getElementById("id_form-" + formnum + "-r_w")
+        let r_t = document.getElementById("id_form-" + formnum + "-r_t")
+        let func_time = document.getElementById("id_form-" + formnum + "-func_time")
+        let occasional_use = document.getElementById("id_form-" + formnum + "-occasional_use")
+
+        let newFormNum = document.querySelector("#id_form-TOTAL_FORMS").value -1
+        let name_new = document.getElementById("id_form-" + newFormNum + "-name")
+        let number_new = document.getElementById("id_form-" + newFormNum + "-number")
+        let P_new = document.getElementById("id_form-" + newFormNum + "-P")
+        let func_cycle_new = document.getElementById("id_form-" + newFormNum + "-func_cycle")
+        let wd_we_new = document.getElementById("id_form-" + newFormNum + "-wd_we")
+        let num_windows_new = document.getElementById("id_form-" + newFormNum + "-num_windows")
+        let window_1_start_new = document.getElementById("id_form-" + newFormNum + "-window_1_start")
+        let window_1_end_new = document.getElementById("id_form-" + newFormNum + "-window_1_end")
+        let window_2_start_new = document.getElementById("id_form-" + newFormNum + "-window_2_start")
+        let window_2_end_new = document.getElementById("id_form-" + newFormNum + "-window_2_end")
+        let window_3_start_new = document.getElementById("id_form-" + newFormNum + "-window_3_start")
+        let window_3_end_new = document.getElementById("id_form-" + newFormNum + "-window_3_end")
+        var window_2 = document.getElementById("id_window_2_form-" + newFormNum)
+        var window_3 = document.getElementById("id_window_3_form-" + newFormNum)
+        let r_w_new = document.getElementById("id_form-" + newFormNum + "-r_w")
+        let r_t_new = document.getElementById("id_form-" + newFormNum + "-r_t")
+        let func_time_new = document.getElementById("id_form-" + newFormNum + "-func_time")
+        let occasional_use_new = document.getElementById("id_form-" + newFormNum + "-occasional_use")
+        var window_2_delete_button = document.getElementById("window_2_form-" + newFormNum + "_delete_button")
+        var window_3_delete_button = document.getElementById("window_3_form-" + newFormNum + "_delete_button")
+        var add_button = document.getElementById("form-" + newFormNum + "_add_button")
+
+        name_new.value = name.value + " " + "{% translate "Kopie" %}"
+        number_new.value = number.value
+        P_new.value = P.value
+        func_cycle_new.value = func_cycle.value
+        wd_we_new.value = wd_we.value
+        num_windows_new.value  = num_windows.value
+        window_1_start_new.value = window_1_start.value
+        window_1_end_new.value = window_1_end.value
+        window_2_start_new.value = window_2_start.value
+        window_2_end_new.value = window_2_end.value
+        window_3_start_new.value = window_3_start.value
+        window_3_end_new.value = window_3_end.value
+
+                     console.log(num_windows.value)
+        if (num_windows_new.value == 2) {
+             window_2.style.display = "block"
+             window_2_delete_button.style.display = "block"
+        } else if (num_windows.value == 3) {
+             window_2.style.display = "block"
+             window_3.style.display = "block"
+             add_button.style.display = "none"
+             window_2_delete_button.style.display = "none"
+             window_3_delete_button.style.display = "block"
+        }
+
+        r_w_new.value  = r_w.value
+        r_t_new.value  = r_t.value
+        func_time_new.value  = func_time.value
+        occasional_use_new.value  = occasional_use.value
+
+        document.getElementById("id_App_form-" + newFormNum + "_CardBody").scrollIntoView();
+    }
+
+    function showAllCards() {
+        // show all forms
+        let nextFormNum = document.querySelector("#id_form-TOTAL_FORMS").value
+        for (let i = 0; i < nextFormNum; i++) {
+            $("#id_App_form-" + i + "_CardBody").addClass("show")
+        }
+    }
+    function loadingPage() {
+        var overlay = document.getElementById("overlay");
+        overlay.style.display = 'block';
+        var spinner = document.getElementById("spinner_building");
+        spinner.style.display = 'block';
+    }
+    </script>
+{% endblock %}

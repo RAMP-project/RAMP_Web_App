@@ -1,0 +1,50 @@
+{% extends 'main/base.html' %}
+{% load i18n %}
+{% load tz %}
+
+{% block content_header %}
+<div class="container">
+    <section class="content-header">
+        <h3>{%  translate "Lastprofile" %}</h3>
+    </section>
+</div>
+
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+    <form method="post" >
+    {% csrf_token %}
+<div style="overflow-x:auto;">
+        <table class="table" >
+          <thead>
+            <tr>
+                <th scope="col">{% translate "Name und Beschreibung" %}</th>
+                <th scope="col">{% translate "Speicherdatum" %} </th>
+                <th scope="col">{% translate "Kennung" %} </th>
+                <th scope="col" ></th>
+                <th scope="col"></th>
+            </tr>
+          </thead>
+            <tbody>
+            {% for lp in load_profiles %}
+            <tr>
+                <td>{{lp.name}} <br>
+                {{lp.description}}</td>
+                <td>{{lp.date|localtime}}</td>
+                <td>{{lp.random_id}}</td>
+                <td><button class="btn btn-red" type='submit' name="download" value={{lp.id}}>{% translate "Downloaden" %}</button></td>
+                <td><button class="btn btn-red confirm-delete2" type='submit' name="delete" value={{lp.id}}>{% translate "Löschen" %}</button></td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        </div>
+    </form>
+    </div>
+    <script>
+    $(document).on('click', '.confirm-delete2', function(){
+    return confirm('{%  translate "Szenario wirklich löschen?" %}');
+    })
+    </script>
+{% endblock %}

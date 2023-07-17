@@ -1,0 +1,82 @@
+{% extends 'main/base.html' %}
+{%  load i18n %}
+{% load static %}
+
+{% block content_header %}
+    <div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+    <ul class="progressbar_ramp">
+            <a href="{% url 'ramp_start' %}"><li id="step1" class="active">{% translate "Vorlage"%}</li></a>
+            <li id="step2">{% translate "Eingaben"%}</li>
+            <li id="step3">{% translate "Ergebnisse"%}</li>
+          </ul>
+            <span class="sr-only">{% translate "1 von 3 Schritten" %}</span> <!-- text visible for screenreaders-only -->
+   </div>
+    </div>
+    <section class="content-header">
+        <h1>
+            {% translate "Lastprofilerstellung mit RAMP"%}
+        </h1>
+        <div class="helptext"> {% blocktrans %} Dies ist eine vom NESSI-Team entworfene Oberfläche zur Nutzung des Tools RAMP
+            von Lombardi et al. {% endblocktrans %}
+            (F. Lombardi, S. Balderrama, S. Quoilin, E. Colombo,
+            Generating high-resolution multi-energy load profiles for remote areas
+            with an open-source stochastic model, Energy, 2019,
+            <a target="_blank" href="https://doi.org/10.1016/j.energy.2019.04.097">https://doi.org/10.1016/j.energy.2019.04.097 </a>).
+            {% blocktrans %} Das Tool ist open source unter
+                <a target="_blank" href="https://github.com/RAMP-project/RAMP">https://github.com/RAMP-project/RAMP</a> ohne Benutzeroberfläche veröffentlicht.
+            Genutzt wird Version v0.3.1. {% endblocktrans %}
+            </div>
+    </section>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <form method="post">
+    {% csrf_token %}
+    <div class="container">
+        <div class="row">
+        <div class="col-md-4 col-sm-6  col-xs-6 col-12 mb-4">
+            <div class="card border-0 bg-red h-100">
+                <div class="card-body" style="background: #bd2130">
+                        <button class="btn btn-outline btn-block stretched-link" style="color:white" type='submit' name="scenario" value=0>
+                            <h4>{% translate "Neues Lastprofil anlegen" %}</h4>
+                            <p>{% translate "Alle Eingabefelder sind leer." %}</p>
+                        </button>
+                </div>
+            </div>
+        </div>
+        {% for temp in user_temps %}
+        <div class="col-md-4 col-sm-6 col-xs-6 col-12 mb-4">
+            <div class="card border-0 h-100" style="background:#d96f79">
+            <div class="card-body" >
+                    <div>
+                        <button class="btn btn-outline btn-block stretched-link" style="color:white" type='submit' name="load_profile" value={{temp.random_id}}>
+                            <h4>{{temp.name}}</h4>
+                            <p>{{temp.description}}</p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% for temp in public_temps %}
+        <div class="col-md-4 col-sm-6 col-xs-6 col-12 mb-4">
+            <div class="card border-0 bg-red h-100">
+            <div class="card-body" style="background: #bd2130">
+                    <div>
+                        <button class="btn btn-outline btn-block stretched-link" style="color:white" type='submit' name="load_profile" value={{temp.random_id}}>
+                            <h4>{{temp.name}}</h4>
+                            <p>{{temp.description}}</p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        </div>
+
+    </div>
+    </form>
+{% endblock %}

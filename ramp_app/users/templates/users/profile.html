@@ -1,0 +1,47 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container">
+    <h3 class="white-important">
+        {% translate "Profil" %}
+    </h3>
+        {% csrf_token %}
+<article class="media content-section" style="height: 140px; width: 100%">
+                    <div class="mt-2 d-flex full-width align-items-center">
+                        <div>
+                            <h4 style="text-align: left"
+                                    class="white-important">
+                                {{ user.username }}
+                            </h4>
+                            <h6 style="text-align: left"
+                                    class="email-profile">
+                                {{ user.email }}
+                            </h6>
+                            <a class="btn btn-primary" href="{% url "password_change" %}">{% translate "Passwort ändern" %}</a>
+                            <a class="btn btn-primary confirm-delete" href="{% url "delete_account" %}">{% translate "Account löschen" %}</a>
+                        </div>
+                    </div>
+            </article>
+</div>
+<div class="container">
+    <h3 class="white-important">
+        {% translate "Profildaten ändern" %}
+    </h3>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            {{ uform | crispy }}
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-outline-primary" type="submit">{% translate "Ändern"%}</button>
+        </div>
+    </form>
+</div>
+    <script>
+    $(document).on('click', '.confirm-delete', function(){
+    return confirm('{%  translate "Account wirklich löschen?" %}');
+})
+    </script>
+{% endblock content %}

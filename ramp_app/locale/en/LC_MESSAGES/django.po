@@ -1,0 +1,489 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-06-30 18:57+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\main\forms.py:14
+msgid "Name des Haushalts"
+msgstr "Household name"
+
+#: .\main\forms.py:28 .\main\forms.py:30 .\main\forms.py:32
+msgid "Von"
+msgstr "From"
+
+#: .\main\forms.py:29 .\main\forms.py:31 .\main\forms.py:33
+msgid "Bis"
+msgstr "Till"
+
+#: .\main\forms.py:34
+msgid "Anzahl"
+msgstr "Number"
+
+#: .\main\forms.py:35
+msgid "Name"
+msgstr "Name"
+
+#: .\main\forms.py:36
+msgid "Leistung"
+msgstr "Power"
+
+#: .\main\forms.py:37
+msgid "Anteil der Nutzungsdauer mit zufälliger Variablität"
+msgstr "Percentage of usage time with random variablity"
+
+#: .\main\forms.py:38
+msgid "Variabililität in den Zeitfenstern"
+msgstr "Variability in usage windows"
+
+#: .\main\forms.py:39
+msgid "Nutzungdauer pro Tag"
+msgstr "Usage per day"
+
+#: .\main\forms.py:40
+msgid "Mindestnutzungsdauer nach Einschalten"
+msgstr "Minimum usage time after switch-on"
+
+#: .\main\forms.py:41
+msgid "Wahrscheinlichkeit tägliche Nutzung"
+msgstr "Porbability of daily usage"
+
+#: .\main\forms.py:42
+msgid "Nutzungszeitraum"
+msgstr "Usage rhythm"
+
+#: .\main\forms.py:62
+msgid "Anzahl der Geräte dieser Art"
+msgstr "Number of appliances of this kind"
+
+#: .\main\forms.py:63
+msgid ""
+"Der Name dient nur zur Unterscheidung für Sie und hat keine Auswirkung auf "
+"die Berechnung"
+msgstr ""
+"The name serves only as a distinguishing feature for you and has no effect "
+"on the calculation"
+
+#: .\main\forms.py:64
+msgid "Elektrische Leistung eines Geräts dieser Art"
+msgstr "Electrical power of one appliance of this kind"
+
+#: .\main\forms.py:65
+msgid ""
+"Anteil der gesamten Nutzungsdauer, der zufälliger Variabilität unterliegt"
+msgstr ""
+"Percentage of the total usage time that is subject to random variablity"
+
+#: .\main\forms.py:66
+msgid "Variabilität in den Start- und Endzeiten der Zeitfenster"
+msgstr "Variability in the start and ending times of usage windows"
+
+#: .\main\forms.py:67
+msgid "Gesamte Nutzungsdauer pro Tag eines Geräts dieser Art"
+msgstr "Total usage time per day of one appliance of this kind"
+
+#: .\main\forms.py:68
+msgid "Mindestdauer, die das Gerät nach Einschalten genutzt wird"
+msgstr "Minimum run time after switch-on"
+
+#: .\main\forms.py:69
+msgid "Wahrscheinlichkeit, dass das Gerät täglich genutzt wird"
+msgstr "Probability that the appliance is used daily"
+
+#: .\main\forms.py:70
+msgid ""
+"Um unterschiedliche Nutzungsmuster eines Gerätes am Wochenende und unter "
+"Woche zu berücksichtigen, definieren Sie bitte zwei Geräte und wählen Sie "
+"einmal \"nur wochentags\" und einmal \"nur am Wochenende\"."
+msgstr ""
+"To take into account different usage patterns of a device on weekends and "
+"during the week, please define two devices and select once \"weekdays only\" "
+"and once \"weekends only\"."
+
+#: .\main\forms.py:76
+msgid "Die Startzeit von Zeitfenster 1 muss vor der Endzeit liegen."
+msgstr "The starting time of window 1 must be before the ending time."
+
+#: .\main\forms.py:78
+msgid "Die Startzeit von Zeitfenster 2 muss vor der Endzeit liegen."
+msgstr "The starting time of window 2 must be before the ending time."
+
+#: .\main\forms.py:80
+msgid "Die Startzeit von Zeitfenster 3 muss vor der Endzeit liegen."
+msgstr "The starting time of window 3 must be before the ending time."
+
+#: .\main\models.py:33
+msgid "Ja"
+msgstr "Yes"
+
+#: .\main\models.py:34
+msgid "Nein"
+msgstr "No"
+
+#: .\main\models.py:37
+msgid "Nur Wochentags"
+msgstr "On weekdays"
+
+#: .\main\models.py:38
+msgid "Nur am Wochenende"
+msgstr "On weekends"
+
+#: .\main\models.py:39
+msgid "Die ganze Woche lang"
+msgstr "All week"
+
+#: .\main\templates\main\base.html:71
+msgid "Gespeicherte Lastprofile"
+msgstr "Saved load profiles"
+
+#: .\main\templates\main\base.html:72 .\users\templates\users\profile.html:8
+msgid "Profil"
+msgstr "Profile"
+
+#: .\main\templates\main\base.html:73
+msgid "Ausloggen"
+msgstr "Logout"
+
+#: .\main\templates\main\base.html:75 .\users\templates\users\login.html:11
+#: .\users\templates\users\login.html:16
+#: .\users\templates\users\register.html:23
+#: .\users\templates\users\register.html:25
+msgid "Einloggen"
+msgstr "Login"
+
+#: .\main\templates\main\base.html:76 .\users\templates\users\login.html:33
+#: .\users\templates\users\login.html:35
+msgid "Registrieren"
+msgstr "Sign up"
+
+#: .\main\templates\main\input.html:10 .\main\templates\main\result.html:10
+#: .\main\templates\main\start.html:10
+msgid "Vorlage"
+msgstr "Template"
+
+#: .\main\templates\main\input.html:11 .\main\templates\main\result.html:11
+#: .\main\templates\main\start.html:11
+msgid "Eingaben"
+msgstr "Inputs"
+
+#: .\main\templates\main\input.html:12 .\main\templates\main\result.html:12
+#: .\main\templates\main\result.html:19 .\main\templates\main\start.html:12
+msgid "Ergebnisse"
+msgstr "Result"
+
+#: .\main\templates\main\input.html:14
+msgid "2 von 3 Schritten"
+msgstr "2 of 3 Steps"
+
+#: .\main\templates\main\input.html:19
+msgid "Haushalt definieren"
+msgstr "Define the household"
+
+#: .\main\templates\main\input.html:31
+msgid ""
+"Berechnung wird durchgeführt, bitte warten. Je nach Anzahl der Geräte kann "
+"dies bis zu einigen Minuten dauern. Bitte laden Sie die Seite nicht neu."
+msgstr ""
+"Calculation is conducted, please wait. Depending on the number of "
+"appliances, this may take up to several minutes. Please do not reload this "
+"page."
+
+#: .\main\templates\main\input.html:102 .\main\templates\main\input.html:278
+#: .\main\templates\main\input.html:447 .\main\templates\main\input.html:623
+msgid "Minuten"
+msgstr "Minutes"
+
+#: .\main\templates\main\input.html:114 .\main\templates\main\input.html:459
+msgid "Nutzungszeitfenster"
+msgstr "Usage window"
+
+#: .\main\templates\main\input.html:218 .\main\templates\main\input.html:563
+msgid "Zeitfenster hinzufügen"
+msgstr "Add time window"
+
+#: .\main\templates\main\input.html:229 .\main\templates\main\input.html:574
+msgid "Weitere Einstellungen"
+msgstr "More settings"
+
+#: .\main\templates\main\input.html:371
+msgid "Geräte im Haushalt"
+msgstr "Appliances in the household"
+
+#: .\main\templates\main\input.html:375
+msgid "Noch kein Gerät vorhanden"
+msgstr "No appliance present"
+
+#: .\main\templates\main\input.html:704
+msgid "Gerät hinzufügen"
+msgstr "Add an appliance"
+
+#: .\main\templates\main\input.html:707
+msgid "Fernseher"
+msgstr "Television"
+
+#: .\main\templates\main\input.html:707
+msgid " Fernseher"
+msgstr " Television"
+
+#: .\main\templates\main\input.html:710
+msgid "Kühlschrank"
+msgstr "Refrigerator"
+
+#: .\main\templates\main\input.html:710
+msgid " Kühlschrank"
+msgstr " Refrigerator"
+
+#: .\main\templates\main\input.html:713
+msgid "Lampe"
+msgstr "Lamp"
+
+#: .\main\templates\main\input.html:713
+msgid " Lampe"
+msgstr " Lamp"
+
+#: .\main\templates\main\input.html:716
+msgid "Handy"
+msgstr "Smart phone"
+
+#: .\main\templates\main\input.html:716
+msgid " Handy"
+msgstr " Smart phone"
+
+#: .\main\templates\main\input.html:719
+msgid "Sonstiges"
+msgstr " Other"
+
+#: .\main\templates\main\input.html:724
+msgid "Berechnung starten"
+msgstr "Start Simulation"
+
+#: .\main\templates\main\input.html:849
+msgid "Kopie"
+msgstr "Copy"
+
+#: .\main\templates\main\result.html:14
+msgid "3 von 3 Schritten"
+msgstr "3 of 3 Steps"
+
+#: .\main\templates\main\result.html:30
+msgid "Elektrisches Lastprofil"
+msgstr "Electrical load profile"
+
+#: .\main\templates\main\result.html:42
+msgid "Jährlicher Bedarf"
+msgstr "Yearly load"
+
+#: .\main\templates\main\result.html:56
+msgid " In Profil speichern"
+msgstr " Save in profile"
+
+#: .\main\templates\main\result.html:58
+msgid " Download Excel"
+msgstr " Download Excel"
+
+#: .\main\templates\main\result.html:77
+msgid "Elektrische Last"
+msgstr "Electrical load"
+
+#: .\main\templates\main\result.html:92
+msgid "Stunden im Jahr"
+msgstr "Hours in the year"
+
+#: .\main\templates\main\result.html:106
+msgid "Leistung in kW"
+msgstr "Power in kW"
+
+#: .\main\templates\main\saved_profiles.html:8
+msgid "Lastprofile"
+msgstr "Load profiles"
+
+#: .\main\templates\main\saved_profiles.html:22
+msgid "Name und Beschreibung"
+msgstr "Name and description"
+
+#: .\main\templates\main\saved_profiles.html:23
+msgid "Speicherdatum"
+msgstr "Saving date"
+
+#: .\main\templates\main\saved_profiles.html:24
+msgid "Kennung"
+msgstr "ID"
+
+#: .\main\templates\main\saved_profiles.html:36
+msgid "Downloaden"
+msgstr "Download"
+
+#: .\main\templates\main\saved_profiles.html:37
+msgid "Löschen"
+msgstr "Delete"
+
+#: .\main\templates\main\saved_profiles.html:47
+msgid "Szenario wirklich löschen?"
+msgstr "Are you sure to delete this scenario?"
+
+#: .\main\templates\main\start.html:14
+msgid "1 von 3 Schritten"
+msgstr "1 of 3 Steps"
+
+#: .\main\templates\main\start.html:19
+msgid "Lastprofilerstellung mit RAMP"
+msgstr "Load profile generation with RAMP"
+
+#: .\main\templates\main\start.html:21
+msgid ""
+" Dies ist eine vom NESSI-Team entworfene Oberfläche zur Nutzung des Tools "
+"RAMP\n"
+"            von Lombardi et al. "
+msgstr ""
+"This is an interface designed by the NESSI-Team to use the tool RAMP by "
+"Lombardi et al."
+
+#: .\main\templates\main\start.html:27
+msgid ""
+" Das Tool ist open source unter\n"
+"                <a target=\"_blank\" href=\"https://github.com/RAMP-project/"
+"RAMP\">https://github.com/RAMP-project/RAMP</a> ohne Benutzeroberfläche "
+"veröffentlicht.\n"
+"            Genutzt wird Version v0.3.1. "
+msgstr ""
+"The tool is published open source at <a target=\"_blank\" href=\"https://"
+"github.com/RAMP-project/RAMP\">https://github.com/RAMP-project/RAMP</a> "
+"without a user interface. Version v0.3.1 is used."
+
+#: .\main\templates\main\start.html:44
+msgid "Neues Lastprofil anlegen"
+msgstr "Generate new load profile"
+
+#: .\main\templates\main\start.html:45
+msgid "Alle Eingabefelder sind leer."
+msgstr "All input fields are empty."
+
+#: .\main\views.py:36
+#, python-format
+msgid "Das Lastprofil mit der Kennung %(id)s wurde nicht gefunden."
+msgstr "The load profile with ID %(id)s was not found. "
+
+#: .\main\views.py:44
+#, python-format
+msgid "Das Szenario mit der Kennung %(id)s kann nicht verwendet werden."
+msgstr "The scenario with ID %(id)s cannot be used."
+
+#: .\main\views.py:49
+msgid "Die Kennung hat nicht das richtige Format."
+msgstr "The ID has not the right format."
+
+#: .\main\views.py:112
+msgid ""
+"Beim Prüfen der Eingaben sind Fehler aufgetreten. Bitte beheben Sie diese."
+msgstr "There are errors in the input data. Please fix them."
+
+#: .\main\views.py:129
+msgid "Bitte loggen Sie sich zunächst ein."
+msgstr "Please log in first."
+
+#: .\main\views.py:153
+msgid ""
+"Speichern war erfolgreich. Rufen Sie das Dashboard (oben rechts im "
+"Nutzermenü) auf, um gespeicherte Lastprofile jederzeit downzuloaden oder zu "
+"löschen."
+msgstr ""
+"Saving was successful. Use the dashboard (top right menu) to download or "
+"delete your saved load profiles."
+
+#: .\main\views.py:158
+msgid ""
+"Beim Speichern ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
+msgstr "An error occurred during saving, please try again."
+
+#: .\main\views.py:194
+msgid "Lastprofil_"
+msgstr "Load profile_"
+
+#: .\main\views.py:215
+#, python-format
+msgid "Das Lastprofil %(name)s wurde erfolgreich gelöscht."
+msgstr "The load profile %(name)s has been deleted successfully."
+
+#: .\ramp_app\settings.py:126
+msgid "Deutsch"
+msgstr "German"
+
+#: .\ramp_app\settings.py:127
+msgid "Englisch"
+msgstr "English"
+
+#: .\users\forms.py:9
+msgid "Ich habe die Datenschutzerklärung gelesen und stimme ihr zu."
+msgstr "I have read the privacy agreement and agree"
+
+#: .\users\templates\users\login.html:21
+msgid "Passwort vergessen? Bitte schreiben Sie eine E-Mail an:"
+msgstr "Forgot your password? Send an email to:"
+
+#: .\users\templates\users\login.html:31
+msgid "Noch kein Account vorhanden?"
+msgstr "Do you need an account?"
+
+#: .\users\templates\users\profile.html:26
+msgid "Passwort ändern"
+msgstr "Change password"
+
+#: .\users\templates\users\profile.html:27
+msgid "Account löschen"
+msgstr "Delete my account"
+
+#: .\users\templates\users\profile.html:34
+msgid "Profildaten ändern"
+msgstr "Change profile data"
+
+#: .\users\templates\users\profile.html:42
+msgid "Ändern"
+msgstr "Save changes"
+
+#: .\users\templates\users\profile.html:48
+msgid "Account wirklich löschen?"
+msgstr "Are you sure to delete your account?"
+
+#: .\users\templates\users\register.html:11
+msgid "Neuen Account anlegen"
+msgstr "Register a new account"
+
+#: .\users\templates\users\register.html:16
+msgid "Anmelden"
+msgstr "Sign up"
+
+#: .\users\templates\users\register.html:21
+msgid "Account bereits vorhanden?"
+msgstr "Already have an account?"
+
+#: .\users\views.py:19
+#, python-format
+msgid "Account für %(user)s wurde erstellt."
+msgstr "Account for %(user)s was created."
+
+#: .\users\views.py:33
+msgid "Das Profil wurde aktualisiert."
+msgstr "The profile has been updated."
+
+#: .\users\views.py:44
+msgid "Sie wurden erfolgreich ausgeloggt."
+msgstr "You have been logged out successfully."
+
+#: .\users\views.py:60
+msgid "Ihr Account wurde gelöscht."
+msgstr "Your account has been deleted."
+

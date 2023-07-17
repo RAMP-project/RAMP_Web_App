@@ -1,0 +1,143 @@
+{% extends 'main/base.html' %}
+{%  load i18n %}
+
+
+{% block content_header %}
+    <div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+    <ul class="progressbar_ramp">
+            <a href="{% url 'ramp_start' %}"><li id="step1" class="active">{% translate "Vorlage"%}</li></a>
+            <a href="{% url 'ramp_input' %}"><li id="step2" class="active">{% translate "Eingaben"%}</li></a>
+            <a href="{% url 'ramp_result' %}"><li id="step3" class="active">{% translate "Ergebnisse"%}</li></a>
+          </ul>
+            <span class="sr-only">{% translate "3 von 3 Schritten" %}</span> <!-- text visible for screenreaders-only -->
+   </div>
+    </div>
+    <section class="content-header">
+        <h1>
+            {% translate "Ergebnisse" %}
+        </h1>
+    </section>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="card card-red card-outline">
+                    <div class="card-header">
+                        <h5 class="m-0">
+                            {% translate "Elektrisches Lastprofil" %}
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div id="LoadElecChart" style="width:100%;height:250px;"></div>
+                        </div>
+                        <div class="col-lg-4">
+                                                <table class="table">
+                                                    <tbody>
+                                                    <tr>
+                                                        <th><strong>{% translate "Jährlicher Bedarf" %}</strong></th>
+                                                            <td class="text-right"> {{sum_load_elec}} kWh/a</td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                        </div>
+                    </div>
+                    </div>
+        </div>
+
+    <div class="row" >
+        <div class="col-12" style="margin-bottom:15px;">
+        <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-red float-right"><span class="far fa-save"> </span>{% translate " In Profil speichern" %}</button>
+        </form>
+    <a href="{% url 'ramp_download_excel'%}" class="btn btn-red" id="downloadbutton"><span class="fas fa-file-download"> </span>{% translate " Download Excel" %}</a>
+    </div>
+    </div>
+        </div>
+    <script>
+    var load_elec = {{load_elec}}
+
+    var trace1 = {
+        y: load_elec,
+        mode: 'lines',
+        line: {
+            color: '#bd2130',
+        width: 2
+        }
+    };
+    var data = [trace1]
+
+    var layout = {
+        title: {
+            text: '{% translate "Elektrische Last" %}',
+            xanchor: 'auto',
+            yanchor: 'bottom',
+            x: 0.53,
+            y: 1.15,
+            xref: 'plot',
+            yref: 'plot'
+        },
+        titlefont: {
+            family: 'Source Sans Pro',
+            size: 18,
+            color: 'black'
+        },
+        showlegend: false,
+        xaxis: {
+            title: '{% translate "Stunden im Jahr" %}',
+            titlefont: {
+                family: 'Source Sans Pro',
+                size: 14,
+                color: 'black'
+            },
+            tickfont: {
+                family: 'Source Sans Pro',
+                size: 14,
+                color: 'black'
+            },
+        },
+        yaxis: {
+            automargin: true,
+            title: '{% translate "Leistung in kW" %}',
+            titlefont: {
+                family: 'Source Sans Pro',
+                size: 14,
+                color: 'black'
+            },
+            tickfont: {
+                family: 'Source Sans Pro',
+                size: 14,
+                color: 'black'
+            },
+            rangemode: 'tozero',
+        },
+        margin: {
+             t: 40,
+             l: 60,
+             r: 10,
+             b: 40,
+        },
+        autosize: true,
+        plot_bgcolor: '#f4f6f9'
+    };
+
+    var config = {
+        displaylogo: false,
+        responsive: true,
+        modeBarButtonsToRemove: [],
+        doubleClickDelay: 1000
+    }
+
+	Plotly.newPlot(document.getElementById('LoadElecChart'), data, layout, config);
+    document.addEventListener("click", function(){
+    window.dispatchEvent(new Event('resize'));
+  });
+
+
+    </script>
+{% endblock %}
