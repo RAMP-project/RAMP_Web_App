@@ -1,6 +1,6 @@
 # RAMP GUI
 This is a graphical user interface for the load profile generation software [RAMP](https://rampdemand.org/).
-Version 0.3.1 available [here](https://github.com/RAMP-project/RAMP/tree/v0.3.1) was used.
+
 The graphical user interface was developed by the 
 [Information Systems Institute](https://iwi.uni-hannover.de) at Leibniz Universität Hannover, Germany, during the development of the energy system simulator [NESSI](https://nessi.iwi.uni-hannover.de).
 
