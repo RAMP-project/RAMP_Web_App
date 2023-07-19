@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-30 18:57+0200\n"
+"POT-Creation-Date: 2023-07-19 13:10+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -165,8 +165,8 @@ msgstr "Logout"
 msgid "Einloggen"
 msgstr "Login"
 
-#: .\main\templates\main\base.html:76 .\users\templates\users\login.html:33
-#: .\users\templates\users\login.html:35
+#: .\main\templates\main\base.html:76 .\users\templates\users\login.html:24
+#: .\users\templates\users\login.html:26
 msgid "Registrieren"
 msgstr "Sign up"
 
@@ -358,11 +358,11 @@ msgid ""
 "                <a target=\"_blank\" href=\"https://github.com/RAMP-project/"
 "RAMP\">https://github.com/RAMP-project/RAMP</a> ohne Benutzeroberfläche "
 "veröffentlicht.\n"
-"            Genutzt wird Version v0.3.1. "
+"            "
 msgstr ""
 "The tool is published open source at <a target=\"_blank\" href=\"https://"
 "github.com/RAMP-project/RAMP\">https://github.com/RAMP-project/RAMP</a> "
-"without a user interface. Version v0.3.1 is used."
+"without a user interface."
 
 #: .\main\templates\main\start.html:44
 msgid "Neues Lastprofil anlegen"
@@ -430,31 +430,27 @@ msgstr "English"
 msgid "Ich habe die Datenschutzerklärung gelesen und stimme ihr zu."
 msgstr "I have read the privacy agreement and agree"
 
-#: .\users\templates\users\login.html:21
-msgid "Passwort vergessen? Bitte schreiben Sie eine E-Mail an:"
-msgstr "Forgot your password? Send an email to:"
-
-#: .\users\templates\users\login.html:31
+#: .\users\templates\users\login.html:22
 msgid "Noch kein Account vorhanden?"
 msgstr "Do you need an account?"
 
-#: .\users\templates\users\profile.html:26
+#: .\users\templates\users\profile.html:22
 msgid "Passwort ändern"
 msgstr "Change password"
 
-#: .\users\templates\users\profile.html:27
+#: .\users\templates\users\profile.html:23
 msgid "Account löschen"
 msgstr "Delete my account"
 
-#: .\users\templates\users\profile.html:34
+#: .\users\templates\users\profile.html:30
 msgid "Profildaten ändern"
 msgstr "Change profile data"
 
-#: .\users\templates\users\profile.html:42
+#: .\users\templates\users\profile.html:38
 msgid "Ändern"
 msgstr "Save changes"
 
-#: .\users\templates\users\profile.html:48
+#: .\users\templates\users\profile.html:44
 msgid "Account wirklich löschen?"
 msgstr "Are you sure to delete your account?"
 
@@ -487,3 +483,5 @@ msgstr "You have been logged out successfully."
 msgid "Ihr Account wurde gelöscht."
 msgstr "Your account has been deleted."
 
+#~ msgid "Passwort vergessen? Bitte schreiben Sie eine E-Mail an:"
+#~ msgstr "Forgot your password? Send an email to:"
