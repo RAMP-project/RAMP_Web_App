@@ -292,11 +292,11 @@
                 $("#id_Appform__number__Card").find("input").attr("required", true);
                 // show the right amount of usage windows
                 var num_windows = document.getElementById("id_form-__number__-num_windows")
-                var window_2 = document.getElementById("id_window_2___number__")
-                var window_3 = document.getElementById("id_window_3___number__")
-                var window_2_delete_button = document.getElementById(("window_2-__number__delete_button"))
-                var window_3_delete_button = document.getElementById(("window_3-__number__delete_button"))
-                var add_button = document.getElementById("__number__add_button")
+                var window_2 = document.getElementById("id_window_2_form-___number__")
+                var window_3 = document.getElementById("id_window_3_form-___number__")
+                var window_2_delete_button = document.getElementById(("window_2_form-__number__delete_button"))
+                var window_3_delete_button = document.getElementById(("window_3_form-__number__delete_button"))
+                var add_button = document.getElementById("form-__number__add_button")
                 if (num_windows.value == 1) {
                     window_2.style.display = "none"
                     window_3.style.display = "none"
@@ -338,15 +338,23 @@
                  var window_3 = document.getElementById("id_window_3_form-__number__")
                  var add_button = document.getElementById("form-__number___add_button")
                  var window_2_delete_button = document.getElementById("window_2_form-__number___delete_button")
+                 var window_2_start = document.getElementById("id_form-__number__-window_2_start")
+                 var window_2_end = document.getElementById("id_form-__number__-window_2_end")
+                 var window_3_start = document.getElementById("id_form-__number__-window_3_start")
+                 var window_3_end = document.getElementById("id_form-__number__-window_3_end")
 
                  add_button.style.display = ""
                  if (num_windows.value==3) {
                      window_3.style.display = "none"
                      window_2_delete_button.style.display = "block"
                      num_windows.value = 2
+                     window_3_start.value = "00:00"
+                     window_3_end.value = "00:00"
                  } else if (num_windows.value==2) {
                      window_2.style.display = "none"
                      num_windows.value = 1
+                     window_2_start.value = "00:00"
+                     window_2_end.value = "00:00"
                  }
              }
             </script>
@@ -661,11 +669,11 @@
 
              function Window_form{{ forloop.counter0 }}_Add() {
                  var num_windows = document.getElementById("id_form-{{ forloop.counter0 }}-num_windows")
-                 var window_2 = document.getElementById("id_window_2_{{ forloop.counter0 }}")
-                 var window_3 = document.getElementById("id_window_3_{{ forloop.counter0 }}")
-                 var add_button = document.getElementById("{{ forloop.counter0 }}add_button")
-                 var window_2_delete_button = document.getElementById(("window_2-{{ forloop.counter0 }}delete_button"))
-                 var window_3_delete_button = document.getElementById(("window_3-{{ forloop.counter0 }}delete_button"))
+                 var window_2 = document.getElementById("id_window_2_form-{{ forloop.counter0 }}")
+                 var window_3 = document.getElementById("id_window_3_form-{{ forloop.counter0 }}")
+                 var add_button = document.getElementById("form-{{ forloop.counter0 }}_add_button")
+                 var window_2_delete_button = document.getElementById(("window_2_form-{{ forloop.counter0 }}_delete_button"))
+                 var window_3_delete_button = document.getElementById(("window_3_form-{{ forloop.counter0 }}_delete_button"))
                  if (num_windows.value == 1) {
                      num_windows.value = 2
                      window_2.style.display = "block"
@@ -685,15 +693,24 @@
                  var add_button = document.getElementById("form-{{ forloop.counter0 }}_add_button")
                  var window_2_delete_button = document.getElementById(("window_2_form-{{ forloop.counter0 }}_delete_button"))
                  var window_3_delete_button = document.getElementById(("window_3_form-{{ forloop.counter0 }}_delete_button"))
+                 var window_2_start = document.getElementById("id_form-{{ forloop.counter0 }}-window_2_start")
+                 var window_2_end = document.getElementById("id_form-{{ forloop.counter0 }}-window_2_end")
+                 var window_3_start = document.getElementById("id_form-{{ forloop.counter0 }}-window_3_start")
+                 var window_3_end = document.getElementById("id_form-{{ forloop.counter0 }}-window_3_end")
 
                  add_button.style.display = ""
                  if (num_windows.value==3) {
                      window_3.style.display = "none"
                      window_2_delete_button.style.display = "block"
                      num_windows.value = 2
+                     window_3_start.value="00:00"
+                     window_3_end.value="00:00"
+                     window_3_fields
                  } else if (num_windows.value==2) {
                      window_2.style.display = "none"
                      num_windows.value = 1
+                     window_2_start.value="00:00"
+                     window_2_end.value="00:00"
                  }
              }
             </script>

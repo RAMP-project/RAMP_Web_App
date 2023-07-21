@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-19 13:10+0200\n"
+"POT-Creation-Date: 2023-07-21 11:09+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -146,26 +146,26 @@ msgstr "On weekends"
 msgid "Die ganze Woche lang"
 msgstr "All week"
 
-#: .\main\templates\main\base.html:71
+#: .\main\templates\main\base.html:70
 msgid "Gespeicherte Lastprofile"
 msgstr "Saved load profiles"
 
-#: .\main\templates\main\base.html:72 .\users\templates\users\profile.html:8
+#: .\main\templates\main\base.html:71 .\users\templates\users\profile.html:8
 msgid "Profil"
 msgstr "Profile"
 
-#: .\main\templates\main\base.html:73
+#: .\main\templates\main\base.html:72
 msgid "Ausloggen"
 msgstr "Logout"
 
-#: .\main\templates\main\base.html:75 .\users\templates\users\login.html:11
+#: .\main\templates\main\base.html:74 .\users\templates\users\login.html:11
 #: .\users\templates\users\login.html:16
 #: .\users\templates\users\register.html:23
 #: .\users\templates\users\register.html:25
 msgid "Einloggen"
 msgstr "Login"
 
-#: .\main\templates\main\base.html:76 .\users\templates\users\login.html:24
+#: .\main\templates\main\base.html:75 .\users\templates\users\login.html:24
 #: .\users\templates\users\login.html:26
 msgid "Registrieren"
 msgstr "Sign up"
@@ -203,75 +203,75 @@ msgstr ""
 "page."
 
 #: .\main\templates\main\input.html:102 .\main\templates\main\input.html:278
-#: .\main\templates\main\input.html:447 .\main\templates\main\input.html:623
+#: .\main\templates\main\input.html:455 .\main\templates\main\input.html:631
 msgid "Minuten"
 msgstr "Minutes"
 
-#: .\main\templates\main\input.html:114 .\main\templates\main\input.html:459
+#: .\main\templates\main\input.html:114 .\main\templates\main\input.html:467
 msgid "Nutzungszeitfenster"
 msgstr "Usage window"
 
-#: .\main\templates\main\input.html:218 .\main\templates\main\input.html:563
+#: .\main\templates\main\input.html:218 .\main\templates\main\input.html:571
 msgid "Zeitfenster hinzufügen"
 msgstr "Add time window"
 
-#: .\main\templates\main\input.html:229 .\main\templates\main\input.html:574
+#: .\main\templates\main\input.html:229 .\main\templates\main\input.html:582
 msgid "Weitere Einstellungen"
 msgstr "More settings"
 
-#: .\main\templates\main\input.html:371
+#: .\main\templates\main\input.html:379
 msgid "Geräte im Haushalt"
 msgstr "Appliances in the household"
 
-#: .\main\templates\main\input.html:375
+#: .\main\templates\main\input.html:383
 msgid "Noch kein Gerät vorhanden"
 msgstr "No appliance present"
 
-#: .\main\templates\main\input.html:704
+#: .\main\templates\main\input.html:721
 msgid "Gerät hinzufügen"
 msgstr "Add an appliance"
 
-#: .\main\templates\main\input.html:707
+#: .\main\templates\main\input.html:724
 msgid "Fernseher"
 msgstr "Television"
 
-#: .\main\templates\main\input.html:707
+#: .\main\templates\main\input.html:724
 msgid " Fernseher"
 msgstr " Television"
 
-#: .\main\templates\main\input.html:710
+#: .\main\templates\main\input.html:727
 msgid "Kühlschrank"
 msgstr "Refrigerator"
 
-#: .\main\templates\main\input.html:710
+#: .\main\templates\main\input.html:727
 msgid " Kühlschrank"
 msgstr " Refrigerator"
 
-#: .\main\templates\main\input.html:713
+#: .\main\templates\main\input.html:730
 msgid "Lampe"
 msgstr "Lamp"
 
-#: .\main\templates\main\input.html:713
+#: .\main\templates\main\input.html:730
 msgid " Lampe"
 msgstr " Lamp"
 
-#: .\main\templates\main\input.html:716
+#: .\main\templates\main\input.html:733
 msgid "Handy"
 msgstr "Smart phone"
 
-#: .\main\templates\main\input.html:716
+#: .\main\templates\main\input.html:733
 msgid " Handy"
 msgstr " Smart phone"
 
-#: .\main\templates\main\input.html:719
+#: .\main\templates\main\input.html:736
 msgid "Sonstiges"
 msgstr " Other"
 
-#: .\main\templates\main\input.html:724
+#: .\main\templates\main\input.html:741
 msgid "Berechnung starten"
 msgstr "Start Simulation"
 
-#: .\main\templates\main\input.html:849
+#: .\main\templates\main\input.html:866
 msgid "Kopie"
 msgstr "Copy"
 
@@ -386,16 +386,21 @@ msgstr "The scenario with ID %(id)s cannot be used."
 msgid "Die Kennung hat nicht das richtige Format."
 msgstr "The ID has not the right format."
 
-#: .\main\views.py:112
+#: .\main\views.py:104
+#, python-format
+msgid "RAMP hat folgende Fehlermeldung ausgegeben: %(e)s"
+msgstr "RAMP raised the following error message: %(e)s"
+
+#: .\main\views.py:117
 msgid ""
 "Beim Prüfen der Eingaben sind Fehler aufgetreten. Bitte beheben Sie diese."
 msgstr "There are errors in the input data. Please fix them."
 
-#: .\main\views.py:129
+#: .\main\views.py:134
 msgid "Bitte loggen Sie sich zunächst ein."
 msgstr "Please log in first."
 
-#: .\main\views.py:153
+#: .\main\views.py:158
 msgid ""
 "Speichern war erfolgreich. Rufen Sie das Dashboard (oben rechts im "
 "Nutzermenü) auf, um gespeicherte Lastprofile jederzeit downzuloaden oder zu "
@@ -404,16 +409,16 @@ msgstr ""
 "Saving was successful. Use the dashboard (top right menu) to download or "
 "delete your saved load profiles."
 
-#: .\main\views.py:158
+#: .\main\views.py:163
 msgid ""
 "Beim Speichern ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
 msgstr "An error occurred during saving, please try again."
 
-#: .\main\views.py:194
+#: .\main\views.py:199
 msgid "Lastprofil_"
 msgstr "Load profile_"
 
-#: .\main\views.py:215
+#: .\main\views.py:220
 #, python-format
 msgid "Das Lastprofil %(name)s wurde erfolgreich gelöscht."
 msgstr "The load profile %(name)s has been deleted successfully."
@@ -483,5 +488,4 @@ msgstr "You have been logged out successfully."
 msgid "Ihr Account wurde gelöscht."
 msgstr "Your account has been deleted."
 
-#~ msgid "Passwort vergessen? Bitte schreiben Sie eine E-Mail an:"
-#~ msgstr "Forgot your password? Send an email to:"
+

@@ -97,16 +97,20 @@ def input(response):
                 response.session['ramp_scenario']['Appliances'] = data_new
                 response.session.modified = True
                 # use ramp here
-                load_elec = run_ramp(data_new)
-                # for testing generate empty lp
-                sum_load_elec = round(sum(load_elec), 2)
-                # save to session
-                response.session['ramp_scenario']['RampLoadProfile']['load_elec'] = load_elec
-                response.session['ramp_scenario']['RampLoadProfile']['sum_load_elec'] = sum_load_elec
+                try:
+                    load_elec = run_ramp(response.session['ramp_scenario']['RampLoadProfile']['name'], data_new)
+                except Exception as e:
+                    messages.add_message(response, messages.INFO, _('RAMP hat folgende Fehlermeldung '
+                                                                     'ausgegeben: %(e)s') % {'e': e})
+                else:
+                    sum_load_elec = round(sum(load_elec), 2)
+                    # save to session
+                    response.session['ramp_scenario']['RampLoadProfile']['load_elec'] = load_elec
+                    response.session['ramp_scenario']['RampLoadProfile']['sum_load_elec'] = sum_load_elec
 
-                response.session.modified = True
-                # redirect to the next page, reverse() is needed to preserve language prefix in url
-                return HttpResponseRedirect(reverse('ramp_result'))
+                    response.session.modified = True
+                    # redirect to the next page, reverse() is needed to preserve language prefix in url
+                    return HttpResponseRedirect(reverse('ramp_result'))
             else:
                 messages.add_message(response, messages.INFO,
                                      _('Beim Prüfen der Eingaben sind Fehler aufgetreten. Bitte beheben Sie diese.'))
@@ -168,7 +172,7 @@ def download(response):
         response = write_excel(response, name, load_elec)
 
         return response
-    # add message that something went wrong i the future
+    # add message that something went wrong in the future
     return HttpResponse(status=204)  # empty response for now
 
 
