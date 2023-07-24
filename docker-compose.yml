@@ -3,13 +3,13 @@
 version: '3.9'
 
 networks:
-  ramp:
+  ramp_network:
     driver: bridge
 
 services:
-  proxy:
+  ramp_proxy:
     image: nginx:mainline-alpine
-    container_name: nginx
+    container_name: ramp_nginx
     # build: ./nginx
     restart: unless-stopped
     ports:
@@ -17,44 +17,44 @@ services:
       - "443:443"
     volumes:
       - ./nginx/nginx-conf/nginx.conf:/etc/nginx/nginx.conf
-      - web_root:/var/www/html
+      - ramp_web_root:/var/www/html
     depends_on:
       - web
     networks:
-      - ramp
-  db:
+      - ramp_network
+  ramp_db:
     image: postgres
-    container_name: postgres
+    container_name: ramp_postgres
     environment:
       - POSTGRES_DB=ramp_app
       - POSTGRES_USER=${DB_ADMIN}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
     networks:
-      - ramp
+      - ramp_network
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - ramp_postgres_data:/var/lib/postgresql/data
 # Django
   web:
     build: .
-    container_name: django
+    container_name: ramp_django
     command: python manage.py runserver 0.0.0.0:8000
     environment:
       - SECRET_KEY=${SECRET_KEY}
       - ALLOWED_HOSTS=localhost web
-      - DB_HOST=db
+      - DB_HOST=ramp_db
       - SQL_ENGINE=django.db.backends.postgresql
       - DB_NAME=ramp_app
       - DB_USER=${DB_ADMIN}
       - DB_PASS=${DB_PASSWORD}
     depends_on:
-      - db
+      - ramp_db
     networks:
-      - ramp
+      - ramp_network
 
 volumes:
-  web_root:
+  ramp_web_root:
     driver: local
-  postgres_data:
+  ramp_postgres_data:
     driver: local
 
 

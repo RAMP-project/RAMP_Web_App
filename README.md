@@ -1,13 +1,15 @@
-# RAMP GUI
-This is a graphical user interface for the load profile generation software [RAMP](https://rampdemand.org/).
-Version 0.3.1 available [here](https://github.com/RAMP-project/RAMP/tree/v0.3.1) was used.
+# RAMP Web App
+This is a web graphical user interface for the load profile generation software [RAMP](https://rampdemand.org/).
+
 The graphical user interface was developed by the 
 [Information Systems Institute](https://iwi.uni-hannover.de) at Leibniz Universität Hannover, Germany, during the development of the energy system simulator [NESSI](https://nessi.iwi.uni-hannover.de).
 
-The development process of the RAMP GUI is described in the following publication:
+The development process of the RAMP Web App is described in the following publication:
 
 Maria C.G. Hart, Sarah Eckhoff, Michael H. Breitner (2023): [Sustainable Energy System Planning in Developing Countries: Facilitating Load Profile Generation in Energy System Simulations](https://hdl.handle.net/10125/102726), 
 Proceedings of the Hawaii International Conference on System Sciences (HICSS), Maui 2023
+
+In the publication, version 0.3.1 was used. This repository is updated to use the newest RAMP version via pypi.
 
 The coding was done by [Sarah Eckhoff](https://www.iwi.uni-hannover.de/de/eckhoff).
 
