@@ -98,7 +98,7 @@ def input(response):
                 response.session.modified = True
                 # use ramp here
                 try:
-                    load_elec = run_ramp(response.session['ramp_scenario']['RampLoadProfile']['name'], data_new)
+                    load_elec = run_ramp(data_new)
                 except Exception as e:
                     messages.add_message(response, messages.INFO, _('RAMP hat folgende Fehlermeldung '
                                                                      'ausgegeben: %(e)s') % {'e': e})

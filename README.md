@@ -9,7 +9,7 @@ The development process of the RAMP Web App is described in the following public
 Maria C.G. Hart, Sarah Eckhoff, Michael H. Breitner (2023): [Sustainable Energy System Planning in Developing Countries: Facilitating Load Profile Generation in Energy System Simulations](https://hdl.handle.net/10125/102726), 
 Proceedings of the Hawaii International Conference on System Sciences (HICSS), Maui 2023
 
-In the publication, version 0.3.1 was used. This repository is updated to use the newest RAMP version via pypi.
+In the publication, version 0.3.1 was used. This repository is updated to use RAMP version 0.5.0 via pypi.
 
 The coding was done by [Sarah Eckhoff](https://www.iwi.uni-hannover.de/de/eckhoff).
 
